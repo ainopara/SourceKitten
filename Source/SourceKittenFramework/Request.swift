@@ -221,6 +221,8 @@ public enum Request {
     case docInfo(text: String, arguments: [String])
     /// A documentation request for the given module.
     case moduleInfo(module: String, arguments: [String])
+    /// Demangle swift symbols
+    case demangle(symbols: [String])
 
     fileprivate var sourcekitObject: sourcekitd_object_t {
         let dict: [sourcekitd_uid_t: sourcekitd_object_t?]
@@ -342,7 +344,14 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count),
                 sourcekitd_uid_get_from_cstr("key.modulename"): sourcekitd_request_string_create(module)
             ]
+        case .demangle(let mangledNames):
+            var mangledNames = mangledNames.map({ sourcekitd_request_string_create($0) })
+            dict = [
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.demangle")),
+                sourcekitd_uid_get_from_cstr("key.names"): sourcekitd_request_array_create(&mangledNames, mangledNames.count)
+            ]
         }
+
         var keys = Array(dict.keys.map({ $0 as sourcekitd_uid_t? }))
         var values = Array(dict.values)
         return sourcekitd_request_dictionary_create(&keys, &values, dict.count)
