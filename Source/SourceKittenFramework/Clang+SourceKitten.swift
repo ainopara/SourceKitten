@@ -217,7 +217,7 @@ extension CXCursor {
             return xml.replacingOccurrences(of: " & ", with: " &amp; ")
         }
 
-        let cursorInfo = Request.cursorInfo(file: swiftUUID, offset: usrOffset, arguments: compilerArguments).send()
+        let cursorInfo = Request.cursorInfo(file: swiftUUID, location: .offset(usrOffset), arguments: compilerArguments).send()
         if let docsXML = cursorInfo[SwiftDocKey.fullXMLDocs.rawValue] as? String,
             case let fixedDocsXML = fixAmpersandInXML(docsXML),
            let swiftDeclaration = SWXMLHash.parse(fixedDocsXML).children.first?["Declaration"].element?.text {
