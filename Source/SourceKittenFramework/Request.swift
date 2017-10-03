@@ -198,7 +198,7 @@ public enum CursorInfoLocation {
 public enum Request {
     /// An `editor.open` request for the given File.
     case editorOpen(file: File)
-    /// A `cursorinfo` request for an offset in the given file, using the `arguments` given.
+    /// A `cursorinfo` request for an offset or an usr in the given file, using the `arguments` given.
     case cursorInfo(file: String, location: CursorInfoLocation, arguments: [String])
     /// A custom request by passing in the sourcekitd_object_t directly.
     case customRequest(request: sourcekitd_object_t)
