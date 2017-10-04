@@ -223,8 +223,10 @@ public enum Request {
     case moduleInfo(module: String, arguments: [String])
     /// Demangle swift symbols
     case demangle(symbols: [String])
-
+    /// Request groups for module
     case moduleGroups(module: String, arguments: [String])
+    /// SourceKit protocol version
+    case protocolVersion
 
     fileprivate var sourcekitObject: sourcekitd_object_t {
         let dict: [sourcekitd_uid_t: sourcekitd_object_t?]
@@ -358,6 +360,10 @@ public enum Request {
                 sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.module.groups")),
                 sourcekitd_uid_get_from_cstr("key.modulename"): sourcekitd_request_string_create(module),
                 sourcekitd_uid_get_from_cstr("key.compilerargs"): sourcekitd_request_array_create(&compilerargs, compilerargs.count)
+            ]
+        case .protocolVersion:
+            dict = [
+                sourcekitd_uid_get_from_cstr("key.request"): sourcekitd_request_uid_create(sourcekitd_uid_get_from_cstr("source.request.protocol_version"))
             ]
         }
 
