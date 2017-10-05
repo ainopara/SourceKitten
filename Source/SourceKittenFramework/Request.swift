@@ -221,8 +221,8 @@ public enum Request {
     case docInfo(text: String, arguments: [String])
     /// A documentation request for the given module.
     case moduleInfo(module: String, arguments: [String])
-    /// Demangle swift symbols
-    case demangle(symbols: [String])
+    /// Demangle swift names
+    case demangle(names: [String])
     /// Request groups for module
     case moduleGroups(module: String, arguments: [String])
     /// SourceKit protocol version
