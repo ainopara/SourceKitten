@@ -12,14 +12,13 @@ import XCTest
 
 class SpecialRequestTests: XCTestCase {
     func testProtocolVersion() {
-        let version = Request.protocolVersion.send()
+        let version = Request.protocolVersion().send()
         compareJSONString(withFixtureNamed: "ProtocolVersion", jsonString: toJSON(toNSDictionary(version)))
     }
 
     func testSwiftModuleGroups() {
         let groups = Request.moduleGroups(module: "Swift", arguments: ["-sdk", sdkPath()]).send()
         compareJSONString(withFixtureNamed: "SwiftModuleGroups", jsonString: toJSON(toNSDictionary(groups)))
-        print(groups)
     }
 
     func testDemangle() {
@@ -43,13 +42,27 @@ class SpecialRequestTests: XCTestCase {
         let result = Request.demangle(names: mangledNames).send()
         XCTAssertEqual(toNSDictionary(result), expectedResult, "should demange names.")
     }
+
+    func testEditorOpenInterface() {
+        let result = Request.editorOpenInterface(
+            name: "Swift",
+            moduleName: "Swift",
+            group: .name("String"),
+            synthesizedExtension: true,
+            arguments: ["-sdk", sdkPath()]
+        ).send()
+        let interface = result["key.sourcetext"] as! String
+        _ = try? interface.data(using: .utf8)?.write(to: URL(fileURLWithPath: fixturesDirectory + "/SwiftInterface.swift"), options: [])
+        compareJSONString(withFixtureNamed: "SwiftInterface", jsonString: toJSON(toNSDictionary(result)), overwrite: true)
+    }
 }
 
 extension SpecialRequestTests {
     static var allTests: [(String, (SpecialRequestTests) -> () throws -> Void)] {
         return [
             ("testProtocolVersion", testProtocolVersion),
-            ("testSwiftModuleGroups", testSwiftModuleGroups)
+            ("testSwiftModuleGroups", testSwiftModuleGroups),
+            ("testEditorOpenInterface", testEditorOpenInterface)
         ]
     }
 }
