@@ -189,7 +189,7 @@ private extension String {
     }
 }
 
-let defaultArguments = { return ["-sdk", sdkPath()] }()
+public let defaultRequestArguments = { return ["-sdk", sdkPath()] }()
 
 public protocol RequestType {
     func sourcekitObject() -> sourcekitd_object_t
@@ -348,7 +348,7 @@ extension Request {
         }
     }
 
-    public static func editorOpen(file: File, arguments: [String] = defaultArguments) -> Request {
+    public static func editorOpen(file: File, arguments: [String] = defaultRequestArguments) -> Request {
         let name: String
         let source: EditorOpen.Source
         if let path = file.path {
@@ -369,7 +369,7 @@ extension Request {
         enableStructure: Bool? = nil,
         enableDiagnostics: Bool? = nil,
         syntacticOnly: Bool? = nil,
-        arguments: [String] = defaultArguments
+        arguments: [String] = defaultRequestArguments
         ) -> Request {
         return Request(type: EditorOpen(
             name: name,
@@ -424,7 +424,7 @@ extension Request {
         moduleName: String,
         group: EditorOpenInterface.Group? = nil,
         synthesizedExtension: Bool? = nil,
-        arguments: [String] = defaultArguments
+        arguments: [String] = defaultRequestArguments
         ) -> Request {
         return Request(type: EditorOpenInterface(
             name: name,
