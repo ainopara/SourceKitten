@@ -13,6 +13,7 @@ let package = Package(
         .package(url: "https://github.com/jpsim/Yams.git", .upToNextMinor(from: "0.5.0") ),
         .package(url: "https://github.com/norio-nomura/Clang_C.git", from: "1.0.0"),
         .package(url: "https://github.com/norio-nomura/SourceKit.git", from: "1.0.0"),
+        .package(url: "https://github.com/emaloney/CleanroomLogger.git", .upToNextMinor(from: "6.0.0")),
     ],
     targets: [
         .target(
@@ -27,6 +28,7 @@ let package = Package(
             dependencies: [
                 "SWXMLHash",
                 "Yams",
+                "CleanroomLogger",
             ],
             exclude: [
                 "clang-c",

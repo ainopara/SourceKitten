@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CleanroomLogger
 
 struct DynamicLinkLibrary {
     let path: String
@@ -54,7 +55,7 @@ struct Loader {
         // then try loading with simple path that depends resolving to DYLD
         for fullPath in fullPaths + [path] {
             if let handle = dlopen(fullPath, RTLD_LAZY) {
-                print("\(path) loaded at \(fullPath)")
+                Log.debug?.message("\(path) loaded at \(fullPath)")
                 return DynamicLinkLibrary(path: path, handle: handle)
             }
         }

@@ -8,6 +8,7 @@
 
 import Dispatch
 import Foundation
+import CleanroomLogger
 #if SWIFT_PACKAGE
 import SourceKit
 #endif
@@ -104,7 +105,9 @@ private let initializeSourceKitFailable: Void = {
     sourcekitd_set_notification_handler { response in
         if !sourcekitd_response_is_error(response!) {
             fflush(stdout)
-            fputs("sourcekitten: connection to SourceKitService restored!\n", stderr)
+            let message = fromSourceKit(sourcekitd_response_get_value(response!)) as! [String: SourceKitRepresentable]
+            Log.debug?.message("sourcekitten: \(message)")
+            Log.debug?.message("sourcekitten: connection to SourceKitService restored!")
             sourceKitWaitingRestoredSemaphore.signal()
         }
         sourcekitd_response_dispose(response!)
