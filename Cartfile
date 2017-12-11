@@ -1,2 +1,3 @@
 github "drmohundro/SWXMLHash" ~> 4.1
 github "jpsim/Yams" ~> 0.5
+github "emaloney/CleanroomLogger" ~> 6.0

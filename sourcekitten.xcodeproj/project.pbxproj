@@ -25,6 +25,8 @@
 		6CCFCE901CFED005003239EB /* Result.framework in Embed Frameworks into SourceKittenFramework.framework */ = {isa = PBXBuildFile; fileRef = E834D61D1B2D054B002AA1FE /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		866176221F85F31B00B9DF14 /* RequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866176211F85F31B00B9DF14 /* RequestTests.swift */; };
 		866EDB011F87C79E00EC198A /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866EDAFF1F87C74600EC198A /* RequestBuilder.swift */; };
+		8676757F1FDE70C50040F005 /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 867675801FDE70C50040F005 /* CleanroomLogger.framework */; };
+		867675821FDE70D00040F005 /* CleanroomLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 867675801FDE70C50040F005 /* CleanroomLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		869C8D491FC97C800067FF0E /* Request+EditorOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C8D481FC97C800067FF0E /* Request+EditorOpen.swift */; };
 		869C8D4B1FC97EEB0067FF0E /* Request+EditorOpenInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C8D4A1FC97EEB0067FF0E /* Request+EditorOpenInterface.swift */; };
 		869C8D4D1FC97F8E0067FF0E /* Request+CursorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C8D4C1FC97F8E0067FF0E /* Request+CursorInfo.swift */; };
@@ -140,6 +142,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D0AAAB5019FB0960007B24B3 /* SourceKittenFramework.framework in Embed Frameworks */,
+				867675821FDE70D00040F005 /* CleanroomLogger.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -163,6 +166,7 @@
 		6CFC18F01C7F2FB900CD70E1 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		866176211F85F31B00B9DF14 /* RequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTests.swift; sourceTree = "<group>"; };
 		866EDAFF1F87C74600EC198A /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		867675801FDE70C50040F005 /* CleanroomLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CleanroomLogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		869C8D481FC97C800067FF0E /* Request+EditorOpen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Request+EditorOpen.swift"; sourceTree = "<group>"; };
 		869C8D4A1FC97EEB0067FF0E /* Request+EditorOpenInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Request+EditorOpenInterface.swift"; sourceTree = "<group>"; };
 		869C8D4C1FC97F8E0067FF0E /* Request+CursorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Request+CursorInfo.swift"; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8676757F1FDE70C50040F005 /* CleanroomLogger.framework in Frameworks */,
 				E80678051CF2749300AFC816 /* Yams.framework in Frameworks */,
 				E8C0DFCD1AD349DB007EE3D4 /* SWXMLHash.framework in Frameworks */,
 			);
@@ -305,6 +310,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		8676757E1FDE70C50040F005 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				867675801FDE70C50040F005 /* CleanroomLogger.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		869C8D641FC98A670067FF0E /* Requests */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +347,7 @@
 				D0D1211A19E87861005E4BAA /* sourcekitten */,
 				D0D1216E19E87B05005E4BAA /* SourceKittenFramework */,
 				D0D1217B19E87B05005E4BAA /* SourceKittenFrameworkTests */,
+				8676757E1FDE70C50040F005 /* Frameworks */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";

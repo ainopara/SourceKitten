@@ -11,6 +11,7 @@ import Foundation
 import SourceKit
 #endif
 
+// swiftlint:disable nesting
 extension Request {
     /// Format
     public struct EditorFormatText: RequestType {

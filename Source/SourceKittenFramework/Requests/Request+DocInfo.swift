@@ -11,6 +11,7 @@ import Foundation
 import SourceKit
 #endif
 
+// swiftlint:disable nesting
 extension Request {
     /// A documentation request for the given source text.
     /// Or a documentation request for the given module.

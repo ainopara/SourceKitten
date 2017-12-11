@@ -6,8 +6,8 @@
 //  Copyright © 2016 SourceKitten. All rights reserved.
 //
 
-import Foundation
 import CleanroomLogger
+import Foundation
 
 struct DynamicLinkLibrary {
     let path: String
