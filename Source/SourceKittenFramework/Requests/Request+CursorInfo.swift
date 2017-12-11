@@ -100,6 +100,6 @@ extension Request {
             return nil
         }
         sourcekitd_request_dictionary_set_int64(cursorInfoRequest, sourcekitd_uid_get_from_cstr(SwiftDocKey.offset.rawValue)!, offset)
-        return try? Request.customRequest(request: cursorInfoRequest).failableSend()
+        return try? Request.customRequest(request: cursorInfoRequest).send()
     }
 }

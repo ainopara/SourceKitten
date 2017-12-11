@@ -11,12 +11,12 @@ import SourceKittenFramework
 import XCTest
 
 class RequestTests: XCTestCase {
-    func testSwiftModuleGroups() {
-        let groups = Request.moduleGroups(module: "Swift", arguments: ["-sdk", sdkPath()]).send()
+    func testSwiftModuleGroups() throws {
+        let groups = try Request.moduleGroups(module: "Swift", arguments: ["-sdk", sdkPath()]).send()
         compareJSONString(withFixtureNamed: "SwiftModuleGroups", jsonString: toJSON(toNSDictionary(groups)))
     }
 
-    func testDemangle() {
+    func testDemangle() throws {
         let mangledNames = [
             "_T0SSD",
             "_T0SC7NSRangeamD",
@@ -34,12 +34,12 @@ class RequestTests: XCTestCase {
             ]
         ]
 
-        let result = Request.demangle(names: mangledNames).send()
+        let result = try Request.demangle(names: mangledNames).send()
         XCTAssertEqual(toNSDictionary(result), expectedResult, "should demange names.")
     }
 
-    func testEditorOpenInterface() {
-        let result = Request.editorOpenInterface(
+    func testEditorOpenInterface() throws {
+        let result = try Request.editorOpenInterface(
             name: UUID().uuidString,
             moduleName: "Swift",
             group: .name("Assert"), // Choose a relatively small group.
