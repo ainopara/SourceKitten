@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if SWIFT_PACKAGE
+import SourceKit
+#endif
 
 extension Request {
     /// A documentation request for the given source text.
@@ -21,7 +24,7 @@ extension Request {
                 return Source(sourceFile: sourceFile, sourceText: nil, moduleName: nil)
             }
 
-            public static func text(_ sourceText: String, name: String = nil) -> Source {
+            public static func text(_ sourceText: String, name: String? = nil) -> Source {
                 return Source(sourceFile: name, sourceText: sourceText, moduleName: nil)
             }
 

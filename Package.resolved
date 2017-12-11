@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "CleanroomLogger",
+        "repositoryURL": "https://github.com/emaloney/CleanroomLogger.git",
+        "state": {
+          "branch": null,
+          "revision": "fc9959b9c17ddc79fe169c46021c5db1081176c2",
+          "version": "6.0.2"
+        }
+      },
+      {
         "package": "Commandant",
         "repositoryURL": "https://github.com/Carthage/Commandant.git",
         "state": {

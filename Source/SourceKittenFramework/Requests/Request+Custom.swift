@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if SWIFT_PACKAGE
+import SourceKit
+#endif
 
 extension Request {
     /// A custom request by passing in the sourcekitd_object_t directly.

@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if SWIFT_PACKAGE
+import SourceKit
+#endif
 
 // swiftlint:disable nesting
 extension Request {
