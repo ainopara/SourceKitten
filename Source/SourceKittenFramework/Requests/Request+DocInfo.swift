@@ -12,18 +12,21 @@ extension Request {
     /// A documentation request for the given source text.
     /// Or a documentation request for the given module.
     public struct DocInfo: RequestType {
-        public let name: String
-
         public struct Source {
+            public let sourceFile: String?
             public let sourceText: String?
             public let moduleName: String?
 
-            public static func text(_ sourceText: String) -> Source {
-                return Source(sourceText: sourceText, moduleName: nil)
+            public static func file(_ sourceFile: String) -> Source {
+                return Source(sourceFile: sourceFile, sourceText: nil, moduleName: nil)
+            }
+
+            public static func text(_ sourceText: String, name: String = nil) -> Source {
+                return Source(sourceFile: name, sourceText: sourceText, moduleName: nil)
             }
 
             public static func module(name moduleName: String) -> Source {
-                return Source(sourceText: nil, moduleName: moduleName)
+                return Source(sourceFile: nil, sourceText: nil, moduleName: moduleName)
             }
         }
         public let source: Source
@@ -31,7 +34,7 @@ extension Request {
 
         public func sourcekitObject() -> sourcekitd_object_t {
             let requestBuilder = RequestBuilder(type: .docInfo)
-            requestBuilder[.name] = name
+            requestBuilder[.sourceFile] = source.sourceFile
             requestBuilder[.sourceText] = source.sourceText
             requestBuilder[.moduleName] = source.moduleName
             requestBuilder[.compilerArgs] = arguments
@@ -41,10 +44,14 @@ extension Request {
     }
 
     public static func docInfo(text: String, arguments: [String]) -> Request {
-        return Request(type: DocInfo(name: NSUUID().uuidString, source: .text(text), arguments: arguments))
+        return Request(type: DocInfo(source: .text(text), arguments: arguments))
     }
 
     public static func moduleInfo(module: String, arguments: [String]) -> Request {
-        return Request(type: DocInfo(name: NSUUID().uuidString, source: .module(name: module), arguments: arguments))
+        return Request(type: DocInfo(source: .module(name: module), arguments: arguments))
+    }
+
+    public static func docInfo(source: DocInfo.Source, arguments: [String]) -> Request {
+        return Request(type: DocInfo(source: source, arguments: arguments))
     }
 }
